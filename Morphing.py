@@ -354,16 +354,3 @@ class ColorBlender:
 
         # Finalize MP4
         writer.close()
-
-if __name__ == "__main__":
-    startImage = imageio.imread('WolfColor.jpg')
-    startPoints = np.loadtxt('wolf.jpg.txt')
-    endImage = imageio.imread('Tiger2Color.jpg')
-    endPoints = np.loadtxt('tiger2.jpg.txt')
-
-    blender = ColorBlender(startImage, startPoints, endImage, endPoints)
-
-    frame = blender.getBlendedImage(0.5)
-    Image.fromarray(frame).convert('RGB').save('BlendedColor.jpg')
-
-    # blender.generateMorphVideo('testResults/personalResults', 50, True)
