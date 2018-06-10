@@ -167,7 +167,6 @@ class MorphingApp(QMainWindow, Ui_MainWindow):
 
     def changeAlpha(self):
         # Rescale and display alpha.
-        print(self.sliAlpha.value())
         self.txtAlpha.setText(str(self.sliAlpha.value() / 20.0))
         self.gfxBlend.setScene(self.blends[self.sliAlpha.value()])
 
@@ -259,12 +258,6 @@ class MorphingApp(QMainWindow, Ui_MainWindow):
             file.writelines([str(int(np.round(coord[0]))) + ' ' + str(int(np.round(coord[1]))) + '\n' for coord in self.startPoints.tolist()])
         with open(self.endFile, 'w') as file:
             file.writelines([str(int(np.round(coord[0]))) + ' ' + str(int(np.round(coord[1]))) + '\n' for coord in self.endPoints.tolist()])
-
-    def resizeEvent(self, event):
-        self.gfxStart.fitInView(self.startScene.itemsBoundingRect(), QtCore.Qt.KeepAspectRatio)
-        self.gfxEnd.fitInView(self.endScene.itemsBoundingRect(), QtCore.Qt.KeepAspectRatio)
-        self.gfxBlend.fitInView(self.blends[0].itemsBoundingRect(), QtCore.Qt.KeepAspectRatio)
-        QMainWindow.resizeEvent(self, event)
 
 if __name__ == "__main__":
     currentApp = QApplication(sys.argv)
